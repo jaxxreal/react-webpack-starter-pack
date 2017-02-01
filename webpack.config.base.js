@@ -4,7 +4,6 @@
 
 const path = require('path');
 const webpack = require('webpack');
-const SvgStore = require('webpack-svgstore-plugin');
 const packageJson = require('./package.json');
 
 const dependencies = Object.keys(packageJson.dependencies).filter(d => d !== 'normalize.css');
@@ -61,13 +60,6 @@ module.exports = {
         new webpack.optimize.CommonsChunkPlugin({
             names: ['app', 'vendor'],
             minChunks: Infinity
-        }),
-        new SvgStore({
-            svgoOptions: {
-                plugins: [
-                    { removeTitle: true }
-                ]
-            }
         })
     ]
 };
