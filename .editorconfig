@@ -1,0 +1,18 @@
+root = true
+
+[*]
+trim_trailing_whitespace = true
+insert_final_newline = true
+end_of_line = lf
+
+[*.{js,jsx,html,css,less}]
+indent_style = space
+indent_size = 4
+
+[*.{json,md}]
+indent_style = space
+indent_size = 2
+
+[nginx.conf]
+indent_style = space
+indent_size = 4

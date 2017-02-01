@@ -1,0 +1,183 @@
+@import "vars";
+
+/* Micro ClearFix Mixin */
+.clearfix {
+    zoom: 1;
+    &:before, &:after {
+        content: "";
+        display: table;
+    }
+    &:after {
+        clear: both;
+    }
+}
+
+.oswald() {
+    font-family: Oswald, sans-serif;
+}
+
+.open-sans() {
+    font-family: "Open Sans", sans-serif;
+}
+
+// Dib fix
+.dibfix {
+    font-size: 0;
+}
+
+.no-break() {
+    white-space: nowrap;
+}
+
+.no-select() {
+    user-select: none;
+    cursor: default;
+}
+
+.no-wrap() {
+    white-space: nowrap;
+}
+
+.dots() {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    .no-wrap();
+}
+
+// Triangle
+// Example:
+// .triangle(up, 0.5em, #fff);
+.triangle-base() {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+}
+
+.triangle(@direction, @size, @color) {
+    .triangle(@direction, @size * 2, @size, @color);
+}
+
+.triangle(@direction, @width, @height, @color) when (@direction = up) {
+    .triangle-base();
+    border-left: (@width / 2)solid transparent;
+    border-right: (@width / 2)solid transparent;
+    border-bottom: @height solid @color;
+}
+
+.triangle(@direction, @width, @height, @color) when (@direction = down) {
+    .triangle-base();
+    border-left: (@width / 2) solid transparent;
+    border-right: (@width / 2) solid transparent;
+    border-top: @height solid @color;
+}
+
+.triangle(@direction, @width, @height, @color) when (@direction = left) {
+    .triangle-base();
+    border-top: (@width / 2) solid transparent;
+    border-bottom: (@width / 2) solid transparent;
+    border-right: @height solid @color;
+}
+
+.triangle(@direction, @width, @height, @color) when (@direction = right) {
+    .triangle-base();
+    border-top: (@width / 2) solid transparent;
+    border-bottom: (@width / 2) solid transparent;
+    border-left: @height solid @color;
+}
+
+.gradient (@startColor: #eee, @endColor: white) {
+    background-color: @startColor;
+    background: -webkit-gradient(linear, left top, left bottom, from(@startColor), to(@endColor));
+    background: -webkit-linear-gradient(top, @startColor, @endColor);
+    background: -moz-linear-gradient(top, @startColor, @endColor);
+    background: -ms-linear-gradient(top, @startColor, @endColor);
+    background: -o-linear-gradient(top, @startColor, @endColor);
+}
+
+.horizontal-gradient (@startColor: #eee, @endColor: white) {
+    background-color: @startColor;
+    background-image: -webkit-gradient(linear, left top, right top, from(@startColor), to(@endColor));
+    background-image: -webkit-linear-gradient(left, @startColor, @endColor);
+    background-image: -moz-linear-gradient(left, @startColor, @endColor);
+    background-image: -ms-linear-gradient(left, @startColor, @endColor);
+    background-image: -o-linear-gradient(left, @startColor, @endColor);
+}
+
+.list-reset() {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.rgba(@attr, @color, @opacity) {
+    @c1: #fff;
+    @c2: @color;
+        @{attr}: rgb((1 - @opacity) * red(@c1) + @opacity * red(@c2), (1 - @opacity) * green(@c1) + @opacity * green(@c2), (1 - @opacity) * blue(@c1) + @opacity * blue(@c2));
+}
+
+// Retina img
+// EXAMPLE: .image-2x('../img/icon_phone.png');
+.image-2x(@image, @repeat: no-repeat) {
+    @filename: ~`/(.*)\.(jpg|jpeg|png|gif)/.exec(@{image})[1]`;
+    @extension: ~`/(.*)\.(jpg|jpeg|png|gif)/.exec(@{image})[2]`;
+    background-image: ~`"url(@{filename}.@{extension})"`;
+    background-repeat: @repeat;
+
+    @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (   min--moz-device-pixel-ratio: 2), only screen and (     -o-min-device-pixel-ratio: 2/1), only screen and (        min-device-pixel-ratio: 2), only screen and (                min-resolution: 192dpi), only screen and (                min-resolution: 2dppx) {
+        /* on retina, use image that's scaled by 2 */
+        background-image: ~`"url(@{filename}@2x.@{extension})"`;
+    }
+
+    //@media
+    //only screen and (-webkit-min-device-pixel-ratio: 2.25),
+    //only screen and (      -o-min-device-pixel-ratio: 9/4),
+    //only screen and (        min-device-pixel-ratio: 2.25),
+    //only screen and (            min-resolution: 2.25dppx) {
+    //  /* on retina, use image that's scaled by 3 */
+    //  background-image: ~`"url(@{filename}@3x.@{extension})"`;
+    //}
+}
+
+.abs-center {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.message (@msg) {
+    body {
+        &:before {
+            content: @msg;
+            position: fixed;
+            left: 10px;
+            bottom: 10px;
+            display: inline-block;
+            padding: 10px;
+            background: orange;
+            color: #fff;
+            z-index: 100;
+        }
+    }
+}
+
+.hover-animation {
+    transition: opacity .2s;
+    &:hover {
+        opacity: .7;
+    }
+    &:active {
+        transition: none;
+        opacity: 1;
+    }
+}
