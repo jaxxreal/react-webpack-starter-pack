@@ -1,12 +1,12 @@
 # react-webpack-starter-pack
 [![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/sindresorhus/awesome)
 
-####Usage
+#### Usage
 `npm start` to start development
 
 `npm run build` to get baked frontend
 
-####Contains:
+#### Contains:
 * axios
 * babel-polyfill
 * classnames
@@ -28,7 +28,7 @@
 * stylelint
 * svg-sprite-loader
 
-####Plans:
+#### Plans:
 - [ ] webpack 2.2
 - [ ] react 16.0
 - [x] eslint-config-airbnb
