@@ -1,7 +1,7 @@
 {
-  "name": "fitdog-frontend",
+  "name": "react-webpack-starter-pack",
   "version": "1.0.0",
-  "description": "A project to help modern dogs and their owners ",
+  "description": "Starter pack for friends",
   "main": "webpack.config.base.js",
   "babel": {
     "presets": [
